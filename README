@@ -1,0 +1,29 @@
+Follow these instructions to run the GATK variant discovery pipeline.
+
+The pipeline is broken into multiple parts.
+
+Part 1 - preprocessing.sh
+    * BWA MEM alignment of individual lane fastq
+    * RG group annotation
+    * Merging of individual lane fastq per sample
+    * Deduplication of reads with PicardTools
+    * Realignment of indels with GATK
+    * Base score quality recalibration with GATK
+    * Sequencing depth of coverage QC
+
+
+
+#Preprocessing
+1. cd to parent directory of project
+2. Run prepocessing.sh
+preprocessing.sh samples.no_groups.txt samples.lanes probe_ranges.list true
+    arg1 = sample list; sample name in first column
+    arg2 = sample and lane fastq connection; sample name in first column 
+           and a single record of lane fastq
+    arg3 = range list for probes in exome seq
+           Modify script if using WGS
+    arg4 = "true" if paired end
+           "false" if single read
+
+# Variant calling
+    
